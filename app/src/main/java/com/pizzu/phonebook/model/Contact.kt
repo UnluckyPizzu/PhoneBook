@@ -17,6 +17,8 @@ data class Contact (
     val surname: String?,
     @ColumnInfo(name = "email")
     val email: String?,
+    @ColumnInfo(name = "gender")
+    val gender: Boolean?,
     @ColumnInfo(name = "birthday")
     val birthday: Int?
 )
