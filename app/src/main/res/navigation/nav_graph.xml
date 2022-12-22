@@ -3,26 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/contactListFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.pizzu.phonebook.main.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/contactListFragment"
+        android:name="com.pizzu.phonebook.ui.main.fragment.ContactListFragment"
+        android:label="ContactListFragment" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_contactListFragment_to_contactAddFragment"
+            app:destination="@id/contactAddFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_contactDetailFragment"
+            app:destination="@id/contactDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.pizzu.phonebook.main.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/contactAddFragment"
+        android:name="com.pizzu.phonebook.ui.main.fragment.ContactAddFragment"
+        android:label="ContactAddFragment" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_contactAddFragment_to_contactListFragment"
+            app:destination="@id/contactListFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/contactDetailFragment"
+        android:name="com.pizzu.phonebook.ui.main.fragment.ContactDetailFragment"
+        android:label="ContactDetailFragment" >
+        <action
+            android:id="@+id/action_contactDetailFragment_to_contactAddFragment"
+            app:destination="@id/contactAddFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>
