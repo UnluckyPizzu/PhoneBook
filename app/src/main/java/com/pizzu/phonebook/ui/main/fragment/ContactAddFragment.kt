@@ -9,15 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.pizzu.phonebook.R
 import com.pizzu.phonebook.data.application.ContactApplication
 import com.pizzu.phonebook.databinding.ContactAddFragmentBinding
-import com.pizzu.phonebook.databinding.ContactListFragmentBinding
 import com.pizzu.phonebook.model.Contact
 import com.pizzu.phonebook.viewmodel.ContactViewModel
 import com.pizzu.phonebook.viewmodel.ContactViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ContactAddFragment : Fragment() {
     private var _binding: ContactAddFragmentBinding? = null
@@ -60,11 +60,16 @@ class ContactAddFragment : Fragment() {
             }
         }
 
-        binding.textInputLayoutBirthday.setOnClickListener{
+        binding.textBirthday.setOnClickListener{
             val datePicker = MaterialDatePicker.Builder.datePicker().setTitleText("Seleziona compleanno").build()
             datePicker.addOnPositiveButtonClickListener {
-                binding.textBirthday.setText(it.toString())
+                val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+                utc.timeInMillis = it
+                val format = SimpleDateFormat("dd-MM-yyyy")
+                val formatted: String = format.format(utc.time)
+                binding.textBirthday.setText(formatted)
             }
+            datePicker.show(childFragmentManager, "tag")
         }
     }
 
