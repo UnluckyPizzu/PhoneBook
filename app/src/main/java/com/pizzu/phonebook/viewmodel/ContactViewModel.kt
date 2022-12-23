@@ -10,8 +10,6 @@ class ContactViewModel(private val contactDao: ContactDao) : ViewModel() {
 
     val allContacts: LiveData<List<Contact>> = contactDao.getContacts().asLiveData()
 
-    fun getContactById(id: Int): Flow<Contact> = contactDao.getContact(id)
-
     private fun getNewContact(contactName: String, contactSurname: String, contactGender: Boolean, contactTelephone: String, contactEmail: String, contactBirthday: String): Contact {
         return Contact(
             name = contactName,
@@ -33,6 +31,64 @@ class ContactViewModel(private val contactDao: ContactDao) : ViewModel() {
             contactDao.insert(newContact)
         }
     }
+
+    fun deleteContact(contact: Contact) {
+        viewModelScope.launch {
+            contactDao.delete(contact)
+        }
+    }
+
+    fun retrieveContact(id: Int): LiveData<Contact> {
+        return contactDao.getContact(id).asLiveData()
+    }
+
+    fun updateContact(
+        contactId: Int,
+        contactName: String,
+        contactSurname: String,
+        contactGender: Boolean,
+        contactTelephone: String,
+        contactEmail: String,
+        contactBirthday: String
+    ) {
+        val updated = getUpdatedContact(contactId, contactName, contactSurname, contactGender,contactTelephone,contactEmail, contactBirthday)
+        updateContact(updated)
+    }
+
+    private fun getUpdatedContact(
+        contactId: Int,
+        contactName: String,
+        contactSurname: String,
+        contactGender: Boolean,
+        contactTelephone: String,
+        contactEmail: String,
+        contactBirthday: String
+    ): Contact {
+        return Contact(
+            id = contactId,
+            name = contactName,
+            surname = contactSurname,
+            gender = contactGender,
+            telephoneNumber = contactTelephone,
+            email = contactEmail,
+            birthday = contactBirthday
+        )
+    }
+
+    private fun updateContact(contact: Contact) {
+        viewModelScope.launch {
+            contactDao.update(contact)
+        }
+    }
+
+    fun isEntryValid(name: String, telephone: String): Boolean {
+        if(name.isBlank() || telephone.isBlank())
+            return false
+        else
+            return true
+    }
+
+
 }
 
 class ContactViewModelFactory(private val contactDao: ContactDao) : ViewModelProvider.Factory{

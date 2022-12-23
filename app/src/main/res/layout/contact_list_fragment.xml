@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.fragment.ContactListFragment">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,19 +22,19 @@
             android:id="@+id/searchPhonebook"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </androidx.cardview.widget.CardView>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerContact"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardSearch" />
+        app:layout_constraintEnd_toEndOf="@+id/cardSearch"
+        app:layout_constraintStart_toStartOf="@+id/cardSearch"
+        app:layout_constraintTop_toBottomOf="@+id/cardSearch"
+        tools:listitem="@layout/contact_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonNewContact"

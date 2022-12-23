@@ -21,64 +21,74 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/imgContact"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textInputLayout"
+                app:layout_constraintTop_toTopOf="@+id/textInputName"
                 app:srcCompat="@drawable/ic_gender_24" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+                android:id="@+id/textInputName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/imgContact"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nome*" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout2"
+                android:id="@+id/textInputSurname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+                app:layout_constraintEnd_toEndOf="@+id/textInputName"
+                app:layout_constraintStart_toStartOf="@+id/textInputName"
+                app:layout_constraintTop_toBottomOf="@+id/textInputName">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditText"
+                    android:id="@+id/textSurname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Cognome" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.button.MaterialButtonToggleGroup
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:id="@+id/BtnGroupGender"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+                app:layout_constraintEnd_toEndOf="@+id/textInputSurname"
+                app:layout_constraintStart_toStartOf="@+id/textInputSurname"
+                app:layout_constraintTop_toBottomOf="@+id/textInputSurname">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/btnMale"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Genere" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_weight="1"
+                    android:text="Male" />
+                <Button
+                    android:id="@+id/btnFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Female" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -97,7 +107,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imgTelephone"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -117,10 +127,11 @@
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toEndOf="@+id/imgTelephone"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textTelephone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Numero di telefono*" />
@@ -142,7 +153,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/imgEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -162,10 +173,11 @@
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintStart_toEndOf="@+id/imgEmail"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email" />
@@ -187,7 +199,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/imgBirthday"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
@@ -207,10 +219,11 @@
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintStart_toEndOf="@+id/imgBirthday"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textBirthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Data di nascita" />
@@ -219,7 +232,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

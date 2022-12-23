@@ -10,17 +10,22 @@ import com.pizzu.phonebook.databinding.ContactItemBinding
 import com.pizzu.phonebook.model.Contact
 
 class ContactListAdapter(private val onItemClicked: (Contact) -> Unit) : ListAdapter<Contact, ContactListAdapter.ContactViewHolder>(DiffCallBack) {
+
+
     class ContactViewHolder(private var binding: ContactItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(contact : Contact){
-            binding.itemName.text = contact.name
+            binding.itemName.text = "${contact.name} ${contact.surname}"
             binding.numberItem.text = contact.telephoneNumber
-            binding.imageItem.setImageResource(R.drawable.avatar_1)
+            if(contact.gender == true)
+                binding.imageItem.setImageResource(R.drawable.avatar_1)
+            else
+                binding.imageItem.setImageResource(R.drawable.avatar_2)
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        return ContactViewHolder(ContactItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return ContactViewHolder(ContactItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
