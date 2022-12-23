@@ -20,5 +20,5 @@ data class Contact (
     @ColumnInfo(name = "gender")
     val gender: Boolean?,
     @ColumnInfo(name = "birthday")
-    val birthday: Int?
+    val birthday: String?
 )

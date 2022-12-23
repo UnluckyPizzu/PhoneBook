@@ -7,7 +7,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ContactDao {
     @Query("SELECT * from contact ORDER BY name ASC")
-    fun getContact(): Flow<List<Contact>>
+    fun getContacts(): Flow<List<Contact>>
+
+    @Query("SELECT * from contact where id = :id")
+    fun getContact(id : Int): Flow<Contact>
 
     @Insert
     suspend fun insert(contact: Contact)
