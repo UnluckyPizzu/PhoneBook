@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/contactListFragment"
         android:name="com.pizzu.phonebook.ui.main.fragment.ContactListFragment"
-        android:label="ContactListFragment" >
+        android:label="@string/Phonebook" >
         <action
             android:id="@+id/action_contactListFragment_to_contactAddFragment"
             app:destination="@id/contactAddFragment" />
@@ -18,10 +18,12 @@
     <fragment
         android:id="@+id/contactAddFragment"
         android:name="com.pizzu.phonebook.ui.main.fragment.ContactAddFragment"
-        android:label="ContactAddFragment" >
+        android:label="@string/add_new_contact" >
         <action
             android:id="@+id/action_contactAddFragment_to_contactListFragment"
-            app:destination="@id/contactListFragment" />
+            app:destination="@id/contactListFragment"
+            app:popUpTo="@id/contactListFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="id"
             app:argType="integer"
@@ -31,7 +33,7 @@
     <fragment
         android:id="@+id/contactDetailFragment"
         android:name="com.pizzu.phonebook.ui.main.fragment.ContactDetailFragment"
-        android:label="ContactDetailFragment" >
+        android:label="@string/detail_contact" >
         <action
             android:id="@+id/action_contactDetailFragment_to_contactAddFragment"
             app:destination="@id/contactAddFragment" />
@@ -40,6 +42,8 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_contactDetailFragment_to_contactListFragment"
-            app:destination="@id/contactListFragment" />
+            app:destination="@id/contactListFragment"
+            app:popUpTo="@id/contactListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

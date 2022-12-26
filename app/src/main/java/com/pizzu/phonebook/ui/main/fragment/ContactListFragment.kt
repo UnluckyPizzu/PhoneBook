@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
@@ -37,12 +38,32 @@ class ContactListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ContactListAdapter{
-            val actionToDetail = ContactListFragmentDirections.actionContactListFragmentToContactDetailFragment(it.id)
+        val adapter = ContactListAdapter {
+            val actionToDetail =
+                ContactListFragmentDirections.actionContactListFragmentToContactDetailFragment(it.id)
             this.findNavController().navigate(actionToDetail)
         }
         binding.recyclerContact.layoutManager = LinearLayoutManager(this.context)
         binding.recyclerContact.adapter = adapter
+
+        binding.searchPhonebook.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                viewModel.allContacts.observe(viewLifecycleOwner) {
+                        contacts -> contacts.filter { x -> x.name.contains(newText) || x.surname?.contains(newText) ?: true }.let{
+                        adapter.submitList(it)
+                    }
+                }
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // task HERE
+                return true
+            }
+
+        })
 
 
         viewModel.allContacts.observe(this.viewLifecycleOwner) {
@@ -62,3 +83,5 @@ class ContactListFragment : Fragment() {
 
     }
 }
+
+

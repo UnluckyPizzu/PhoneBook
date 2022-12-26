@@ -1,12 +1,35 @@
 <resources>
     <string name="app_name">PhoneBook</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- Strings used for ContactListFragment fragments -->
+    <string name="Phonebook">PhoneBook</string>
+
+    <!-- Strings used for ContactAddFragment fragments -->
+    <string name="add_new_contact">Add new contact</string>
+    <string name="name">Name*</string>
+    <string name="surname">Surname</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="telephone">Telephone number</string>
+    <string name="email">Email</string>
+    <string name="birthday">Birthday</string>
+    <string name="add">add</string>
+
+
+    <!-- Strings used for ContactDetailFragment fragments -->
+    <string name="detail_contact">Detail</string>
+    <string name="contact_information">Contact information</string>
+    <string name="personal_information">%s\'s information</string>
+    <string name="edit_contact">Edit contact</string>
+    <string name="delete_contact">Delete contact</string>
+    <string name="warning">Warning!</string>
+    <string name="delete_sure">Are you sure about deleting this contact?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
+
+
+
 </resources>

@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pizzu.phonebook.R
 import com.pizzu.phonebook.data.application.ContactApplication
 import com.pizzu.phonebook.databinding.ContactAddFragmentBinding
@@ -53,7 +54,8 @@ class ContactDetailFragment : Fragment() {
 
     private fun bind(contact: Contact) {
         binding.apply {
-            textDetailName.setText("Informazioni di ${contact.name} ${contact.surname}", TextView.BufferType.SPANNABLE)
+            textDetailName.setText(getString(R.string.personal_information,"${contact.name} ${contact.surname}"))
+            //textDetailName.setText("Informazioni di ${contact.name} ${contact.surname}", TextView.BufferType.SPANNABLE)
             textDetailTelephone.setText(contact.telephoneNumber, TextView.BufferType.SPANNABLE)
             if(contact.birthday.isNullOrEmpty())
                 groupBirthday.visibility = View.GONE
