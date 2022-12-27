@@ -82,10 +82,7 @@ class ContactViewModel(private val contactDao: ContactDao) : ViewModel() {
     }
 
     fun isEntryValid(name: String, telephone: String): Boolean {
-        if(name.isBlank() || telephone.isBlank())
-            return false
-        else
-            return true
+        return !(name.isBlank() || telephone.isBlank())
     }
 
 

@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import com.pizzu.phonebook.R
 import com.pizzu.phonebook.data.application.ContactApplication
 import com.pizzu.phonebook.databinding.ContactAddFragmentBinding
@@ -23,6 +24,7 @@ class ContactAddFragment : Fragment() {
     private var _binding: ContactAddFragmentBinding? = null
     private val binding get() = _binding!!
 
+    //Ottengo il viewModel condiviso
     private val viewModel : ContactViewModel by activityViewModels {
         ContactViewModelFactory(
             (activity?.application as ContactApplication).database.contactDao()
@@ -46,6 +48,7 @@ class ContactAddFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val id = navigationArgs.id
+        //Se l'id è maggiore a 0 vuol dire che devo fare un update, se è inferiore a 0 vuol dire che è un nuovo contatto
         if(id > 0)
         {
             viewModel.retrieveContact(id).observe(this.viewLifecycleOwner){ updatedItem ->
@@ -60,6 +63,7 @@ class ContactAddFragment : Fragment() {
             }
         }
 
+        //Al click della casella per il compleanno faccio apparire un date picker che restituisce la data formattata
         binding.textBirthday.setOnClickListener{
             val datePicker = MaterialDatePicker.Builder.datePicker().setTitleText("Seleziona compleanno").build()
             datePicker.addOnPositiveButtonClickListener {
@@ -73,6 +77,10 @@ class ContactAddFragment : Fragment() {
         }
     }
 
+    /**
+     * Funzione che binda il contatto da aggiornare con il contenuto delle box di testo.
+     * @param contact il contatto da bindare.
+     */
     private fun bind(contact: Contact) {
         binding.apply {
             textName.setText(contact.name, TextView.BufferType.SPANNABLE)
@@ -91,6 +99,11 @@ class ContactAddFragment : Fragment() {
         }
     }
 
+    /**
+     * Funzione che chiama il vm per controllare che i campi obbligatori siano corretti.
+     * @return Boolean in base al risultato del controllo sui campi .
+     */
+    //Funzione che chiama il vm per che i campi obbligatori corretti
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
             binding.textName.text.toString(),
@@ -98,6 +111,9 @@ class ContactAddFragment : Fragment() {
         )
     }
 
+    /**
+     * Funzione che chiama il vm per aggiungere un nuovo contatto.
+     */
     private fun addNewContact() {
         var gender = true
         if(binding.BtnGroupGender.checkedButtonId == R.id.btnFemale)
@@ -114,8 +130,15 @@ class ContactAddFragment : Fragment() {
             val action = ContactAddFragmentDirections.actionContactAddFragmentToContactListFragment()
             findNavController().navigate(action)
         }
+        else
+        {
+            Snackbar.make(binding.rootLayout,getString(R.string.add_error),Snackbar.LENGTH_LONG).setBackgroundTint(resources.getColor(R.color.colorError,requireContext().theme)).show()
+        }
     }
 
+    /**
+     * Funzione che chiama il vm per aggiornare un contatto esistente.
+     */
     private fun updateContact() {
         var gender = true
         if(binding.BtnGroupGender.checkedButtonId == R.id.btnFemale)
@@ -132,6 +155,10 @@ class ContactAddFragment : Fragment() {
             )
             val action = ContactAddFragmentDirections.actionContactAddFragmentToContactListFragment()
             findNavController().navigate(action)
+        }
+        else
+        {
+            Snackbar.make(binding.rootLayout,getString(R.string.add_error),Snackbar.LENGTH_LONG).setBackgroundTint(resources.getColor(R.color.colorError, requireContext().theme)).show()
         }
     }
 }

@@ -11,10 +11,11 @@
     <string name="surname">Surname</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="telephone">Telephone number</string>
+    <string name="telephone">Telephone number*</string>
     <string name="email">Email</string>
     <string name="birthday">Birthday</string>
     <string name="add">add</string>
+    <string name="add_error">Field name and telephone number required</string>
 
 
     <!-- Strings used for ContactDetailFragment fragments -->

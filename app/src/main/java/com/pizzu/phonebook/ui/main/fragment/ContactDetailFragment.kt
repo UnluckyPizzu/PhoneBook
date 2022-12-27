@@ -52,9 +52,13 @@ class ContactDetailFragment : Fragment() {
         }
     }
 
+    /**
+     * Funzione che binda il contatto da aggiornare con il contenuto delle box di testo e i bottoni.
+     * @param contact il contatto da bindare.
+     */
     private fun bind(contact: Contact) {
         binding.apply {
-            textDetailName.setText(getString(R.string.personal_information,"${contact.name} ${contact.surname}"))
+            textDetailName.text = getString(R.string.personal_information,"${contact.name} ${contact.surname}")
             //textDetailName.setText("Informazioni di ${contact.name} ${contact.surname}", TextView.BufferType.SPANNABLE)
             textDetailTelephone.setText(contact.telephoneNumber, TextView.BufferType.SPANNABLE)
             if(contact.birthday.isNullOrEmpty())
@@ -69,19 +73,29 @@ class ContactDetailFragment : Fragment() {
 
             if(contact.gender == true)
             {
-                textDetailGender.setText("Maschio")
+                textDetailGender.text = getString(R.string.male)
                 imgPersonalContact.setImageResource(R.drawable.avatar_1)
             }
             else
             {
-                textDetailGender.setText("Femmina")
+                textDetailGender.text = getString(R.string.female)
                 imgPersonalContact.setImageResource(R.drawable.avatar_2)
             }
 
             buttonDeleteItem.setOnClickListener {
-                viewModel.deleteContact(contact)
-                val action = ContactDetailFragmentDirections.actionContactDetailFragmentToContactListFragment()
-                findNavController().navigate(action)
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(resources.getString(R.string.warning))
+                    .setMessage(resources.getString(R.string.delete_sure))
+                    .setNegativeButton(resources.getString(R.string.no)) { dialog, which ->
+                        // Respond to negative button press
+                    }
+                    .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                        // Respond to positive button press
+                        viewModel.deleteContact(contact)
+                        val action = ContactDetailFragmentDirections.actionContactDetailFragmentToContactListFragment()
+                        findNavController().navigate(action)
+                    }
+                    .show()
             }
 
             buttonEditItem.setOnClickListener {

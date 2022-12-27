@@ -46,6 +46,7 @@ class ContactListFragment : Fragment() {
         binding.recyclerContact.layoutManager = LinearLayoutManager(this.context)
         binding.recyclerContact.adapter = adapter
 
+        //In base alla query nella searchview viene modificato il filtro sulla lista dell'adapter
         binding.searchPhonebook.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {

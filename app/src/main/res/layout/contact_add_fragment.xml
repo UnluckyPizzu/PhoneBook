@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragment.ContactAddFragment">
+    android:id="@+id/rootLayout"
+    tools:context=".ui.main.fragment.ContactAddFragment"
+    android:background="@color/colorGrey2">
 
 
     <androidx.cardview.widget.CardView
@@ -72,6 +74,7 @@
                 android:id="@+id/BtnGroupGender"
                 app:singleSelection="true"
                 android:layout_marginBottom="8dp"
+                app:checkedButton="@id/btnMale"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textInputSurname"
                 app:layout_constraintStart_toStartOf="@+id/textInputSurname"
