@@ -61,6 +61,7 @@ class ContactAddFragment : Fragment() {
             binding.btnAdd.setOnClickListener{
                 addNewContact()
             }
+            binding.BtnGroupGender.check(R.id.btnMale)
         }
 
         //Al click della casella per il compleanno faccio apparire un date picker che restituisce la data formattata

@@ -14,7 +14,7 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right"/>
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_contactListFragment_to_contactDetailFragment"
             app:destination="@id/contactDetailFragment"
@@ -30,7 +30,6 @@
         <action
             android:id="@+id/action_contactAddFragment_to_contactListFragment"
             app:destination="@id/contactListFragment"
-            app:enterAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/contactListFragment"
             app:popUpToInclusive="true" />
         <argument

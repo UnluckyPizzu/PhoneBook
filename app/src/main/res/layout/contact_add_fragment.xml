@@ -74,7 +74,6 @@
                 android:id="@+id/BtnGroupGender"
                 app:singleSelection="true"
                 android:layout_marginBottom="8dp"
-                app:checkedButton="@id/btnMale"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textInputSurname"
                 app:layout_constraintStart_toStartOf="@+id/textInputSurname"

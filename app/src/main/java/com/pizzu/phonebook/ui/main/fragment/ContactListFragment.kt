@@ -52,7 +52,7 @@ class ContactListFragment : Fragment() {
             override fun onQueryTextChange(newText: String): Boolean {
 
                 viewModel.allContacts.observe(viewLifecycleOwner) {
-                        contacts -> contacts.filter { x -> x.name.contains(newText) || x.surname?.contains(newText) ?: true }.let{
+                        contacts -> contacts.filter { x -> x.name.contains(newText, true) || x.surname?.contains(newText, true) ?: true }.let{
                         adapter.submitList(it)
                     }
                 }
